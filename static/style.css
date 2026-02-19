@@ -1,0 +1,73 @@
+:root {
+  --bg: #080d1d;
+  --panel: #101833;
+  --panel-2: #132043;
+  --text: #f4f8ff;
+  --muted: #a0b2d6;
+  --accent: #5ad0ff;
+  --success: #57d68d;
+  --danger: #ff6b86;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: radial-gradient(circle at top, #1b2765, var(--bg));
+  color: var(--text);
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+h1 { margin: 0; }
+.panel {
+  background: linear-gradient(170deg, var(--panel), var(--panel-2));
+  border: 1px solid #263871;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+.boards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.dropzone {
+  min-height: 240px;
+  border: 1px dashed #3d4f8a;
+  border-radius: 12px;
+  padding: 10px;
+  display: grid;
+  gap: 8px;
+}
+.task-card {
+  background: #1c2752;
+  border-radius: 10px;
+  border: 1px solid #33427a;
+  padding: 10px;
+}
+.task-top { display: flex; justify-content: space-between; gap: 8px; }
+.badge { background: #2849a5; border-radius: 999px; padding: 2px 9px; font-size: 12px; }
+.meta, .notes, .hint { color: var(--muted); }
+.progress-wrap { height: 8px; background: #0d1533; border-radius: 9px; overflow: hidden; margin: 8px 0; }
+.progress-bar { height: 100%; background: linear-gradient(90deg, #43f0aa, #53b8ff); }
+.actions { display: flex; gap: 8px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; }
+.task-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
+input, select, textarea, button {
+  background: #0c1635;
+  border: 1px solid #2f4278;
+  color: var(--text);
+  border-radius: 8px;
+  padding: 9px;
+}
+button { cursor: pointer; background: #3055c9; }
+button:hover { filter: brightness(1.1); }
+.danger { background: #8b2d44; }
+@media (max-width: 900px) {
+  .boards { grid-template-columns: 1fr; }
+}
