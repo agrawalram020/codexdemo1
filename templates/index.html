@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GoalFlow - 3 Month Todo Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>✨ GoalFlow: 3-Month Planner</h1>
+      <button id="reminderBtn">Send Test Reminder</button>
+    </header>
+
+    <section class="panel goal-panel">
+      <h2>3-Month Goal</h2>
+      <form id="goalForm">
+        <input id="goalTitle" placeholder="Example: Build healthy routines and finish a course" required />
+        <textarea id="goalDescription" placeholder="Why this goal matters..."></textarea>
+        <div class="row">
+          <input id="goalStart" type="date" required />
+          <input id="goalEnd" type="date" required />
+          <button type="submit">Save Goal</button>
+        </div>
+      </form>
+      <div id="goalTimeline"></div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="panel"><h3>Total Tasks</h3><p id="totalTasks">0</p></article>
+      <article class="panel"><h3>Completed</h3><p id="completedTasks">0</p></article>
+      <article class="panel"><h3>Completion Rate</h3><p id="completionRate">0%</p></article>
+      <article class="panel"><h3>Average Progress</h3><p id="avgProgress">0%</p></article>
+    </section>
+
+    <section class="panel">
+      <h2>Create Task</h2>
+      <form id="taskForm" class="task-form">
+        <input id="taskTitle" placeholder="Task name" required />
+        <select id="taskFrequency">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="once">Once</option>
+        </select>
+        <input id="taskCategory" placeholder="Category (fitness, learning...)" />
+        <input id="taskDue" type="date" />
+        <input id="taskProgress" type="number" min="0" max="100" placeholder="Progress %" />
+        <input id="taskNotes" placeholder="Notes" />
+        <button type="submit">Add Task</button>
+      </form>
+      <p class="hint">Drag cards between columns to mark complete/incomplete.</p>
+    </section>
+
+    <section class="boards">
+      <div class="panel board">
+        <h2>🧩 To Do</h2>
+        <div id="todoList" class="dropzone"></div>
+      </div>
+      <div class="panel board">
+        <h2>✅ Completed</h2>
+        <div id="doneList" class="dropzone"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Daily Activity Trend</h2>
+      <canvas id="trendChart" height="100"></canvas>
+    </section>
+  </main>
+
+  <template id="taskCardTemplate">
+    <article class="task-card" draggable="true">
+      <div class="task-top">
+        <h4 class="task-title"></h4>
+        <span class="badge frequency"></span>
+      </div>
+      <p class="meta"></p>
+      <p class="notes"></p>
+      <div class="progress-wrap"><div class="progress-bar"></div></div>
+      <div class="actions">
+        <button class="log-btn">+ Daily Log</button>
+        <button class="delete-btn danger">Delete</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
